@@ -3,7 +3,7 @@ import { Main } from "./Main";
 
 export const Layout = () => {
   return (
-    <div className="lg:m-10 mg:m-10 sm:m-10">
+    <div className="mt-4 mx-auto w-full sm:w-full md:w-2/3 lg:w-1/2">
       <Header />
       <Main />
     </div>
