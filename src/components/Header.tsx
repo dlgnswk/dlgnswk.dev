@@ -11,7 +11,7 @@ export const Header = () => {
         </div>
         <ModeToggle />
       </div>
-      <Separator className="my-4" />
+      <Separator className="mt-4" />
     </div>
   );
 };
