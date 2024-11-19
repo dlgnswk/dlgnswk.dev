@@ -1,13 +1,14 @@
 "use client";
 
 import { Page } from "@/components/Page";
-import { GithubContributions } from "./GithubContributions";
 import { Separator } from "@/components/ui/separator";
 import { TableCell } from "@/components/ui/table";
 import { TableBody } from "@/components/ui/table";
 import { TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table } from "@/components/ui/table";
+import { Suspense } from "react";
+import { Contributions } from "./Contributions";
 
 export function Homepage() {
   return (
@@ -17,7 +18,9 @@ export function Homepage() {
           <CardTitle>Activities</CardTitle>
         </CardHeader>
         <CardContent>
-          <GithubContributions />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Contributions />
+          </Suspense>
         </CardContent>
       </Card>
       <Table>

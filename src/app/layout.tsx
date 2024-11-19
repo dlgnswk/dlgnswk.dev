@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryProvider>
           <Header />
-          {children}
+          <div className="mx-auto mt-10 w-full md:w-1/2">{children}</div>
         </QueryProvider>
       </body>
     </html>
