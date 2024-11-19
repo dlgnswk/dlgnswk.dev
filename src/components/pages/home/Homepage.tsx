@@ -1,16 +1,15 @@
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { Page } from "./Page";
+"use client";
+
+import { Page } from "@/components/Page";
+import { GithubContributions } from "./GithubContributions";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { useGithubContributions } from "@/apis/queries/useGithubContributions";
+import { TableCell } from "@/components/ui/table";
+import { TableBody } from "@/components/ui/table";
+import { TableRow } from "@/components/ui/table";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table } from "@/components/ui/table";
 
-export const Main = () => {
-  const {
-    data: githubData,
-    isLoading,
-    error,
-  } = useGithubContributions("dlgnswk");
-
+export function Homepage() {
   return (
     <>
       <Card>
@@ -18,14 +17,7 @@ export const Main = () => {
           <CardTitle>Activities</CardTitle>
         </CardHeader>
         <CardContent>
-          {isLoading && <div>로딩 중...</div>}
-          {error && <div>에러가 발생했습니다: {error.message}</div>}
-          {githubData && (
-            <div>
-              총 컨트리뷰션: {githubData.totalContributions}
-              {/* 여기에 원하는 데이터 표시 */}
-            </div>
-          )}
+          <GithubContributions />
         </CardContent>
       </Card>
       <Table>
@@ -69,4 +61,4 @@ export const Main = () => {
       <Page />
     </>
   );
-};
+}
