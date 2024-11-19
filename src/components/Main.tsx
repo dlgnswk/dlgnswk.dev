@@ -1,10 +1,33 @@
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Page } from "./Page";
 import { Separator } from "@/components/ui/separator";
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
+import { useGithubContributions } from "@/apis/queries/useGithubContributions";
 
 export const Main = () => {
+  const {
+    data: githubData,
+    isLoading,
+    error,
+  } = useGithubContributions("dlgnswk");
+
   return (
     <>
+      <Card>
+        <CardHeader>
+          <CardTitle>Activities</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading && <div>로딩 중...</div>}
+          {error && <div>에러가 발생했습니다: {error.message}</div>}
+          {githubData && (
+            <div>
+              총 컨트리뷰션: {githubData.totalContributions}
+              {/* 여기에 원하는 데이터 표시 */}
+            </div>
+          )}
+        </CardContent>
+      </Card>
       <Table>
         <TableBody>
           <TableRow className="h-20">
