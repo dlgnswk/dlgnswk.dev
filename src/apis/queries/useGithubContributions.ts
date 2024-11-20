@@ -16,7 +16,7 @@ interface DayContribution {
 }
 
 interface WeekContributions {
-  days: DayContribution[]; // 길이 7의 배열
+  days: DayContribution[];
 }
 
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
@@ -117,8 +117,14 @@ const fetchGithubContributions = async (
       ?.pullRequestReviewContributions;
 
   const now = new Date();
+  now.setHours(23, 59, 59, 999);
+
   const oneYearAgo = new Date(now);
+  oneYearAgo.setHours(0, 0, 0, 0);
   oneYearAgo.setFullYear(now.getFullYear() - 1);
+
+  const dayOfWeek = oneYearAgo.getDay();
+  oneYearAgo.setDate(oneYearAgo.getDate() - dayOfWeek);
 
   const yearContributions: WeekContributions[] = [];
   let currentWeek: DayContribution[] = [];
